@@ -16,12 +16,10 @@ pip install tbparse # required in export_from_tensorboard.py
 
 cd ../DeepSpeedExamples/training/bing_bert
 
-# download dataset from https://cloudstore.zih.tu-dresden.de/index.php/s/RyeDoaogesGJFCR 
-# change dataset path in ds_train_bert_nvidia_data_bsz64k_seq128_slurm.sh
-# change bert_token_file bert_model_file which included into the dataset
+# download & extract dataset from https://cloudstore.zih.tu-dresden.de/index.php/s/RyeDoaogesGJFCR
+# change dataset path in ds_train_bert_nvidia_data_bsz64k_seq128_tud.sh
 # change train_micro_batch_size_per_gpu in deepspeed_bsz64k_lamb_config_seq128_tud.json to gpu memory
 
 # run it in an allocation with 1 gpu per task (-n <NUMPER_OF_GPUs>)
-srun ./ds_train_bert_nvidia_data_bsz64k_seq128_slurm.sh
-
+srun ./ds_train_bert_nvidia_data_bsz64k_seq128_tud.sh
 ```
