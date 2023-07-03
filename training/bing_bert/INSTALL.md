@@ -12,6 +12,7 @@ cd DeepSpeed
 pip install .
 
 pip install tensorboardX boto3 requests h5py 
+pip install tbparse # required in export_from_tensorboard.py 
 
 cd ../DeepSpeedExamples/training/bing_bert
 
