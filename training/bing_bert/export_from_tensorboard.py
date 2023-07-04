@@ -10,13 +10,23 @@ def parse_tb2(logdir, csv_out):
 
 	df['wall_clock'] = pd.to_datetime(df.wall_time, unit="s")
 	first = df.wall_time[0]
-	df['runtime_to_report'] = df.wall_time - first
+	df['Runtime'] = df.wall_time - first
+	
+	loss_df = df[df['tag'] == 'Train/Samples/train_loss'].copy()
+	loss_df.rename(columns = {'step' : 'Samples', 'value' : 'Loss'}, inplace=True)
+	loss_df.drop(columns = ['tag', 'wall_time', 'wall_clock'], inplace=True)
+	
 	
 	if csv_out:
-		df[df['tag'] == 'Train/Samples/train_loss'].to_csv(csv_out)
+#		df[df['tag'] == 'Train/Samples/train_loss'].to_csv(csv_out)
+		loss_df.to_csv(csv_out)
+	
+	return loss_df
 
-
-	return df[df['tag'] == 'Train/Samples/train_loss']
+	
+	
+	
+	
 
 
 if __name__ == '__main__':
