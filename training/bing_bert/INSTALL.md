@@ -11,8 +11,8 @@ git clone --branch=gpu_bench https://github.com/tud-zih-ki/DeepSpeedExamples.git
 cd DeepSpeed
 pip install .
 
-pip install tensorboardX boto3 requests h5py 
-pip install tbparse # required in export_from_tensorboard.py 
+pip install tensorboardX boto3 requests h5py mpi4py
+pip install tbparse # required in export_from_tensorboard.py
 
 cd ../DeepSpeedExamples/training/bing_bert
 
