@@ -35,12 +35,14 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Parse & print TensorBoard event files')
     parser.add_argument('logdir', help='TensorBoard logdir')
     parser.add_argument('--csv_out', help='csv output file')
+    parser.add_argument('--threshold', help='Loss value that should be undercut', type=float, default=8.5)
+    parser.add_argument('--min_iters', help='Number of iterations the threshold should be reached', type=int, default=2)
     args = parser.parse_args()
 
     data = parse_tb2(args.logdir, args.csv_out)
     print(data)
     print('='*60)
-    target_runtime = find_runtime(data, min_iters=2, loss_limit=8.5)
+    target_runtime = find_runtime(data, min_iters=args.min_iters, loss_limit=args.threshold)
     if target_runtime:
         print(f"Time to reach target loss: {target_runtime:.2f} s")
     else:
