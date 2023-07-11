@@ -5,7 +5,7 @@ module load modenv/hiera  GCC/11.3.0 OpenMPI/4.1.4 CUDA/11.8.0 Python/3.10.4
 python -m venv venv
 source venv/bin/activate
 
-git clone https://github.com/tud-zih-ki/DeepSpeed.git
+git clone --branch=v0.9.5 https://github.com/microsoft/DeepSpeed.git
 git clone --branch=gpu_bench https://github.com/tud-zih-ki/DeepSpeedExamples.git
 
 cd DeepSpeed
