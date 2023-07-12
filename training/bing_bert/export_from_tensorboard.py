@@ -26,6 +26,8 @@ def parse_tb2(logdir, csv_out, threshold, min_iter):
 	
 	
 def find_runtime(df, threshold, min_iter):
+	if len(df) <= min_iter + 1: # not enough rows
+		return False
 	for i in df.index:
 		if df['Loss'][i]  < threshold:
 			val = True
