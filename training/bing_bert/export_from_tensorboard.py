@@ -16,7 +16,7 @@ def parse_tb2(logdir, csv_out, threshold, min_iter):
 	loss_df.rename(columns = {'step' : 'Samples', 'value' : 'Loss'}, inplace=True)
 	loss_df.drop(columns = ['tag', 'wall_time', 'wall_clock'], inplace=True)
 	
-	target_runtime_idx = find_runtime(loss_df, threshold, min_iter)
+	target_runtime_idx = find_runtime_v2(loss_df, threshold, min_iter)
 	
 	if csv_out:
 		loss_df.to_csv(csv_out)
@@ -24,7 +24,8 @@ def parse_tb2(logdir, csv_out, threshold, min_iter):
 	return loss_df, target_runtime_idx
 
 	
-	
+
+# runtime BEFORE min_iter under the threshold
 def find_runtime(df, threshold, min_iter):
 	if len(df) <= min_iter + 1: # not enough rows
 		return False
@@ -38,6 +39,20 @@ def find_runtime(df, threshold, min_iter):
 		if i == df.index[-min_iter-1]:
 			return False
 
+# runtime AFTER min_iter under the threshold
+def find_runtime_v2(df, threshold, min_iter):
+	if len(df) <= min_iter: # not enough rows
+		return False
+	for i in df.index:
+		if df['Loss'][i]  < threshold:
+			val = True
+			j = 0
+			for j in range(min_iter):
+				val = val and (df['Loss'][i+j] < threshold)
+			if val:
+				return i+min_iter - 1
+		if i == df.index[-min_iter]:
+			return False
 
 
 if __name__ == '__main__':
