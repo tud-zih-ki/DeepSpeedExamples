@@ -17,6 +17,7 @@ def parse_tb2(logdir, csv_out, threshold, min_iter):
 	loss_df.drop(columns = ['tag', 'wall_time', 'wall_clock'], inplace=True)
 	
 	target_runtime_idx = find_runtime_v2(loss_df, threshold, min_iter)
+#	target_runtime_idx = find_runtime(loss_df, threshold, min_iter)
 	
 	if csv_out:
 		loss_df.to_csv(csv_out)
@@ -59,8 +60,8 @@ if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='Parse TensorBoard Event files and prints them')
 	parser.add_argument('logdir', help='TensorBoard logdir')
 	parser.add_argument('--csv_out', help='csv output file', default=None)
-	parser.add_argument('--threshold', help='threadhold values are acceptable', default=8.5, type=float)
-	parser.add_argument('--min_iter', help='minimum iteration under the threshold', default=2, type=int)
+	parser.add_argument('--threshold', help='threadhold values are acceptable', default=6, type=float)
+	parser.add_argument('--min_iter', help='minimum iteration under the threshold', default=5, type=int)
 
 	args = parser.parse_args()
 
