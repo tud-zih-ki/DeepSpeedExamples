@@ -9,6 +9,7 @@ git clone --branch=v0.9.5 https://github.com/microsoft/DeepSpeed.git
 git clone --branch=gpu_bench https://github.com/tud-zih-ki/DeepSpeedExamples.git
 
 cd DeepSpeed
+pip install torch\>=2
 pip install .
 
 pip install tensorboardX boto3 requests h5py mpi4py
