@@ -8,6 +8,8 @@ OUTPUT_DIR=$(pwd)/bert_model_nvidia_data_outputs
 
 DATA_PATH="/workspace/bert"
 
+# disable progressbar in non interactive jobs
+export TQDM_DISABLE=1
 
 export RANK=$SLURM_PROCID
 export LOCAL_RANK=$SLURM_LOCALID
