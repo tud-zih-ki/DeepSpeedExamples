@@ -1,21 +1,20 @@
 # Installation
 
 ```
-module load modenv/hiera  GCC/11.3.0 OpenMPI/4.1.4 CUDA/11.8.0 Python/3.10.4
-python -m venv venv
-source venv/bin/activate
+#module load modenv/hiera  GCC/11.3.0 OpenMPI/4.1.4 CUDA/11.8.0 Python/3.10.4
 
-git clone --branch=v0.9.5 https://github.com/microsoft/DeepSpeed.git
-git clone --branch=gpu_bench https://github.com/tud-zih-ki/DeepSpeedExamples.git
+python -m venv ./venv
+source ./venv/bin/activate
 
-cd DeepSpeed
-pip install torch\>=2
-pip install .
+git clone --branch=gpu_bench_deneb https://github.com/tud-zih-ki/DeepSpeedExamples.git
+
+pip install torch\>=2.6
+pip install deepspeed\>=v0.16.5
 
 pip install tensorboardX boto3 requests h5py mpi4py
 pip install tbparse # required in export_from_tensorboard.py
 
-cd ../DeepSpeedExamples/training/bing_bert
+cd DeepSpeedExamples/training/bing_bert
 
 # download & extract dataset from https://cloudstore.zih.tu-dresden.de/index.php/s/RyeDoaogesGJFCR
 # change dataset path in ds_train_bert_nvidia_data_bsz64k_seq128_tud.sh
