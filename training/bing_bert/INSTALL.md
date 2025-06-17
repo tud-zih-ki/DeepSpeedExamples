@@ -9,7 +9,7 @@ source ./venv/bin/activate
 git clone --branch=gpu_bench_deneb https://github.com/tud-zih-ki/DeepSpeedExamples.git
 
 pip install torch\>=2.6
-pip install deepspeed\>=v0.16.5
+pip install deepspeed==0.16.5
 
 pip install tensorboardX boto3 requests h5py mpi4py
 pip install tbparse # required in export_from_tensorboard.py
