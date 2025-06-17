@@ -1,7 +1,7 @@
 # Installation
 
 ```
-#module load modenv/hiera  GCC/11.3.0 OpenMPI/4.1.4 CUDA/11.8.0 Python/3.10.4
+#module load release/24.04  GCC/13.2.0 OpenMPI/4.1.6 CUDA/12.6.0 Python/3.11.5
 
 python -m venv ./venv
 source ./venv/bin/activate
